@@ -1,6 +1,11 @@
 // Modules
 import React, { Fragment, useState, useEffect } from "react";
 import { LoremIpsum } from "lorem-ipsum";
+// Material UI
+import { Alert } from "@material-ui/lab";
+import { ArrowDownward } from "@material-ui/icons";
+import { Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 // Components
 import BottomBar from "./BottomBar";
 // Styles
@@ -14,8 +19,13 @@ const lorem = new LoremIpsum({
 });
 
 function Room() {
+    const classes = muiStyles();
+
+    // React Hooks State
     const [append, setAppend] = useState(false);
+    const [isScrollInBottom, setIsScrollInBottom] = useState(false);
     const [messages, setMessage] = useState([]);
+    const [notifyNewMessage, setNotifyNewMessage] = useState(false);
     const [previousScrollBottom, setPreviousScrollBottom] = useState(0);
 
     useEffect(() => {
@@ -28,6 +38,10 @@ function Room() {
             div.scrollTop = div.scrollHeight - previousScrollBottom;
         }
 
+        if (isScrollInBottom) {
+            scrollToBottom();
+        }
+
         // eslint-disable-next-line
     }, [messages]);
 
@@ -36,7 +50,18 @@ function Room() {
 
         messagesCopy.push({ message, sender });
 
+        var div = document.getElementById("messagesContainer");
+        const isScrollInBottom =
+            div.scrollTop + div.offsetHeight === div.scrollHeight;
+
+        if (!isScrollInBottom) {
+            setNotifyNewMessage(true);
+        } else {
+            setNotifyNewMessage(false);
+        }
+
         setAppend(false);
+        setIsScrollInBottom(isScrollInBottom);
         setMessage(messagesCopy);
     }
 
@@ -52,13 +77,23 @@ function Room() {
         }
 
         var div = document.getElementById("messagesContainer");
+        const isScrollInBottom =
+            div.scrollTop + div.offsetHeight === div.scrollHeight;
 
-        setPreviousScrollBottom(div.scrollHeight - div.scrollTop);
         setAppend(true);
+        setIsScrollInBottom(isScrollInBottom);
+        setMessage(messagesCopy);
+        setPreviousScrollBottom(div.scrollHeight - div.scrollTop);
+    }
 
-        setTimeout(function () {
-            setMessage(messagesCopy);
-        }, 500);
+    function onScroll() {
+        var div = document.getElementById("messagesContainer");
+        const isScrollInBottom =
+            div.scrollTop + div.offsetHeight === div.scrollHeight;
+
+        if (isScrollInBottom) {
+            setNotifyNewMessage(false);
+        }
     }
 
     function scrollToBottom() {
@@ -68,7 +103,11 @@ function Room() {
 
     return (
         <div style={styles.container}>
-            <div id="messagesContainer" style={styles.messagesContainer}>
+            <div
+                id="messagesContainer"
+                onScroll={onScroll}
+                style={styles.messagesContainer}
+            >
                 {messages.map((message, index) => {
                     return (
                         <Fragment key={index}>
@@ -89,6 +128,24 @@ function Room() {
                     );
                 })}
             </div>
+            {notifyNewMessage && (
+                <Button
+                    classes={{ root: classes.notificationButton }}
+                    onClick={scrollToBottom}
+                >
+                    <Alert
+                        classes={{
+                            root: classes.notificationContainer,
+                            message: classes.infoMessageContainer
+                        }}
+                        severity="info"
+                        variant="filled"
+                    >
+                        <span>New Message Received!</span>
+                        <ArrowDownward style={styles.arrowDownIcon} />
+                    </Alert>
+                </Button>
+            )}
             <BottomBar
                 addMessage={addMessage}
                 appendRandomMessages={appendRandomMessages}
@@ -96,5 +153,11 @@ function Room() {
         </div>
     );
 }
+
+const muiStyles = makeStyles({
+    infoMessageContainer: styles.infoMessageContainer,
+    notificationButton: styles.notificationButton,
+    notificationContainer: styles.notificationContainer
+});
 
 export default Room;

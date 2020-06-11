@@ -3,7 +3,7 @@ import React from "react";
 import { LoremIpsum } from "lorem-ipsum";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+import { Button } from "@material-ui/core";
 // Styles
 import styles from "./BottomBar.css";
 
