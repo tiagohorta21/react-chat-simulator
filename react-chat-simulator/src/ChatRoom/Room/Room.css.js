@@ -8,7 +8,7 @@ const styles = {
         padding: "0px 200px",
         width: "100%"
     },
-    messageContainer: {
+    messagesContainer: {
         display: "flex",
         flexDirection: "column",
         height: "100%",

@@ -7,15 +7,15 @@ import Button from "@material-ui/core/Button";
 // Styles
 import styles from "./BottomBar.css";
 
-function BottomBar({ addMessage }) {
-    const classes = muiStyles();
+const lorem = new LoremIpsum({
+    wordsPerSentence: {
+        max: 32,
+        min: 4
+    }
+});
 
-    const lorem = new LoremIpsum({
-        wordsPerSentence: {
-            max: 32,
-            min: 4
-        }
-    });
+function BottomBar({ addMessage, appendRandomMessages }) {
+    const classes = muiStyles();
 
     return (
         <div style={styles.container}>
@@ -24,14 +24,21 @@ function BottomBar({ addMessage }) {
                 onClick={() => addMessage(lorem.generateSentences(1), "other")}
                 variant="contained"
             >
-                Receive new message
+                Push Received Message
+            </Button>
+            <Button
+                classes={{ contained: classes.contained }}
+                onClick={appendRandomMessages}
+                variant="contained"
+            >
+                Unshift Random Messages
             </Button>
             <Button
                 classes={{ contained: classes.contained }}
                 onClick={() => addMessage(lorem.generateSentences(1), "me")}
                 variant="contained"
             >
-                Add new message
+                Push New Message
             </Button>
         </div>
     );
