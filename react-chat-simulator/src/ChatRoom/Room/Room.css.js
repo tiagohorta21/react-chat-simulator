@@ -3,6 +3,8 @@ const styles = {
         backgroundColor: "#F0F0F0",
         display: "flex",
         flexDirection: "column",
+        height: "100%",
+        overflow: "hidden",
         padding: "0px 200px",
         width: "100%"
     },
@@ -10,6 +12,7 @@ const styles = {
         display: "flex",
         flexDirection: "column",
         height: "100%",
+        overflow: "auto",
         paddingTop: "18px"
     },
     newMessage: {

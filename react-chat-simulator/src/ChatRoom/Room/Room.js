@@ -1,5 +1,5 @@
 // Modules
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 // Components
 import BottomBar from "./BottomBar";
 // Styles
@@ -18,9 +18,9 @@ function Room() {
     return (
         <div style={styles.container}>
             <div style={styles.messageContainer}>
-                {messages.map((message) => {
+                {messages.map((message, index) => {
                     return (
-                        <>
+                        <Fragment key={index}>
                             {message.sender === "me" ? (
                                 <div style={styles.newMessageContainer}>
                                     <div style={styles.newMessage}>
@@ -34,7 +34,7 @@ function Room() {
                                     </div>
                                 </div>
                             )}
-                        </>
+                        </Fragment>
                     );
                 })}
             </div>
