@@ -22,8 +22,8 @@ const styles = {
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        overflow: "auto",
-        paddingTop: "18px"
+        marginBottom: "16px",
+        overflow: "auto"
     },
     newMessage: {
         backgroundColor: "#3578E5",
@@ -36,12 +36,13 @@ const styles = {
     },
     newMessageContainer: {
         display: "flex",
+        flex: "0 0 auto",
         justifyContent: "flex-end",
-        marginBottom: "16px",
+        marginTop: "16px",
         width: "100%"
     },
     notificationButton: {
-        bottom: "88px",
+        bottom: "90px",
         display: "block",
         padding: "0px",
         position: "absolute",
@@ -62,8 +63,9 @@ const styles = {
     },
     receivedMessageContainer: {
         display: "flex",
+        flex: "0 0 auto",
         justifyContent: "flex-start",
-        marginBottom: "16px",
+        marginTop: "16px",
         width: "100%"
     }
 };
