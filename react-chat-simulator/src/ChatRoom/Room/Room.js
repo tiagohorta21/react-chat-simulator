@@ -1,13 +1,10 @@
 // Modules
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { LoremIpsum } from "lorem-ipsum";
-// Material UI
-import { Alert } from "@material-ui/lab";
-import { ArrowDownward } from "@material-ui/icons";
-import { Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 // Components
 import BottomBar from "./BottomBar";
+import Messages from "./Messages";
+import Notification from "./Notification";
 // Styles
 import styles from "./Room.css";
 
@@ -19,9 +16,6 @@ const lorem = new LoremIpsum({
 });
 
 function Room() {
-    const classes = muiStyles();
-
-    // React Hooks State
     const [append, setAppend] = useState(false);
     const [isScrollInBottom, setIsScrollInBottom] = useState(false);
     const [messages, setMessage] = useState([]);
@@ -103,48 +97,9 @@ function Room() {
 
     return (
         <div style={styles.container}>
-            <div
-                id="messagesContainer"
-                onScroll={onScroll}
-                style={styles.messagesContainer}
-            >
-                {messages.map((message, index) => {
-                    return (
-                        <Fragment key={index}>
-                            {message.sender === "me" ? (
-                                <div style={styles.newMessageContainer}>
-                                    <div style={styles.newMessage}>
-                                        <span>{message.message}</span>
-                                    </div>
-                                </div>
-                            ) : (
-                                <div style={styles.receivedMessageContainer}>
-                                    <div style={styles.receivedMessage}>
-                                        <span>{message.message}</span>
-                                    </div>
-                                </div>
-                            )}
-                        </Fragment>
-                    );
-                })}
-            </div>
+            <Messages messages={messages} onScroll={onScroll} />
             {notifyNewMessage && (
-                <Button
-                    classes={{ root: classes.notificationButton }}
-                    onClick={scrollToBottom}
-                >
-                    <Alert
-                        classes={{
-                            root: classes.notificationContainer,
-                            message: classes.infoMessageContainer
-                        }}
-                        severity="info"
-                        variant="filled"
-                    >
-                        <span>New Message Received!</span>
-                        <ArrowDownward style={styles.arrowDownIcon} />
-                    </Alert>
-                </Button>
+                <Notification scrollToBottom={scrollToBottom} />
             )}
             <BottomBar
                 addMessage={addMessage}
@@ -153,11 +108,5 @@ function Room() {
         </div>
     );
 }
-
-const muiStyles = makeStyles({
-    infoMessageContainer: styles.infoMessageContainer,
-    notificationButton: styles.notificationButton,
-    notificationContainer: styles.notificationContainer
-});
 
 export default Room;
