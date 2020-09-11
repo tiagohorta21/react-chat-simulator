@@ -14,7 +14,7 @@ const styles = {
         display: "block",
         padding: "0px",
         position: "absolute",
-        right: "200px",
+        right: "100px",
         width: "300px"
     },
     notificationContainer: {

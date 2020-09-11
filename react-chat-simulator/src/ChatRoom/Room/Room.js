@@ -36,6 +36,15 @@ function Room() {
             scrollToBottom();
         }
 
+        if (
+            !append &&
+            !isScrollInBottom &&
+            messages.length > 0 &&
+            messages[messages.length - 1].sender === "me"
+        ) {
+            scrollToBottom();
+        }
+
         // eslint-disable-next-line
     }, [messages]);
 
@@ -45,13 +54,10 @@ function Room() {
         messagesCopy.push({ message, sender });
 
         var div = document.getElementById("messagesContainer");
-        const isScrollInBottom =
-            div.scrollTop + div.offsetHeight === div.scrollHeight;
+        const isScrollInBottom = div.scrollTop + div.offsetHeight === div.scrollHeight;
 
-        if (!isScrollInBottom) {
+        if (!isScrollInBottom && sender === "other") {
             setNotifyNewMessage(true);
-        } else {
-            setNotifyNewMessage(false);
         }
 
         setAppend(false);
@@ -71,8 +77,7 @@ function Room() {
         }
 
         var div = document.getElementById("messagesContainer");
-        const isScrollInBottom =
-            div.scrollTop + div.offsetHeight === div.scrollHeight;
+        const isScrollInBottom = div.scrollTop + div.offsetHeight === div.scrollHeight;
 
         setAppend(true);
         setIsScrollInBottom(isScrollInBottom);
@@ -82,8 +87,7 @@ function Room() {
 
     function onScroll() {
         var div = document.getElementById("messagesContainer");
-        const isScrollInBottom =
-            div.scrollTop + div.offsetHeight === div.scrollHeight;
+        const isScrollInBottom = div.scrollTop + div.offsetHeight === div.scrollHeight;
 
         if (isScrollInBottom) {
             setNotifyNewMessage(false);
@@ -98,13 +102,8 @@ function Room() {
     return (
         <div style={styles.container}>
             <Messages messages={messages} onScroll={onScroll} />
-            {notifyNewMessage && (
-                <Notification scrollToBottom={scrollToBottom} />
-            )}
-            <BottomBar
-                addMessage={addMessage}
-                appendRandomMessages={appendRandomMessages}
-            />
+            {notifyNewMessage && <Notification scrollToBottom={scrollToBottom} />}
+            <BottomBar addMessage={addMessage} appendRandomMessages={appendRandomMessages} />
         </div>
     );
 }

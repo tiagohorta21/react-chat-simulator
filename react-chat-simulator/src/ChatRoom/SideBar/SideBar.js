@@ -10,7 +10,7 @@ function SideBar() {
         <div style={styles.container}>
             <div style={styles.contactContainer}>
                 <AccountCircle style={styles.contactIcon} />
-                <span style={styles.contactName}>Tiago Horta</span>
+                <span style={styles.contactName}>Awesome User</span>
             </div>
         </div>
     );

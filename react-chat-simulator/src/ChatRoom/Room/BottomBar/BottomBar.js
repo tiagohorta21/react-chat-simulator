@@ -24,21 +24,21 @@ function BottomBar({ addMessage, appendRandomMessages }) {
                 onClick={() => addMessage(lorem.generateSentences(1), "other")}
                 variant="contained"
             >
-                Push Received Message
+                Receive Message
             </Button>
             <Button
                 classes={{ contained: classes.contained }}
                 onClick={appendRandomMessages}
                 variant="contained"
             >
-                Unshift Random Messages
+                Unshift Messages
             </Button>
             <Button
                 classes={{ contained: classes.contained }}
                 onClick={() => addMessage(lorem.generateSentences(1), "me")}
                 variant="contained"
             >
-                Push New Message
+                Send Message
             </Button>
         </div>
     );

@@ -5,7 +5,7 @@ const styles = {
         flexDirection: "column",
         height: "100%",
         overflow: "hidden",
-        padding: "0px 200px",
+        padding: "0px 100px",
         width: "100%"
     }
 };

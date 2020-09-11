@@ -11,7 +11,7 @@ const styles = {
         borderRadius: "8px",
         color: "#FFFFFF",
         display: "flex",
-        fontFamily: "roboto",
+        fontFamily: "Roboto, sans-serif",
         padding: "12px",
         width: "65%"
     },
@@ -26,7 +26,7 @@ const styles = {
         backgroundColor: "#FFFFFF",
         borderRadius: "8px",
         display: "flex",
-        fontFamily: "roboto",
+        fontFamily: "Roboto, sans-serif",
         padding: "12px",
         width: "65%"
     },
