@@ -5,7 +5,7 @@ import { AccountCircle } from "@material-ui/icons";
 // Styles
 import styles from "./SideBar.css";
 
-function SideBar() {
+const SideBar = () => {
     return (
         <div style={styles.container}>
             <div style={styles.contactContainer}>
@@ -14,6 +14,6 @@ function SideBar() {
             </div>
         </div>
     );
-}
+};
 
 export default SideBar;

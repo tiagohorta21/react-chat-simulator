@@ -6,13 +6,13 @@ import SideBar from "./SideBar";
 // Styles
 import styles from "./ChatRoom.css";
 
-function App() {
+const App = () => {
     return (
         <div style={styles.container}>
             <SideBar />
             <Room />
         </div>
     );
-}
+};
 
 export default App;

@@ -14,7 +14,7 @@ const lorem = new LoremIpsum({
     }
 });
 
-function BottomBar({ addMessage, appendRandomMessages }) {
+const BottomBar = ({ addMessage }) => {
     const classes = muiStyles();
 
     return (
@@ -28,13 +28,6 @@ function BottomBar({ addMessage, appendRandomMessages }) {
             </Button>
             <Button
                 classes={{ contained: classes.contained }}
-                onClick={appendRandomMessages}
-                variant="contained"
-            >
-                Unshift Messages
-            </Button>
-            <Button
-                classes={{ contained: classes.contained }}
                 onClick={() => addMessage(lorem.generateSentences(1), "me")}
                 variant="contained"
             >
@@ -42,7 +35,7 @@ function BottomBar({ addMessage, appendRandomMessages }) {
             </Button>
         </div>
     );
-}
+};
 
 const muiStyles = makeStyles({
     contained: styles.contained

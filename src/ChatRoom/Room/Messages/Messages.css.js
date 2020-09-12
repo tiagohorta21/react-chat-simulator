@@ -1,10 +1,7 @@
 const styles = {
     messagesContainer: {
-        display: "flex",
-        flexDirection: "column",
         height: "100%",
-        marginBottom: "16px",
-        overflow: "auto"
+        width: "100%"
     },
     newMessage: {
         backgroundColor: "#3578E5",
@@ -19,7 +16,6 @@ const styles = {
         display: "flex",
         flex: "0 0 auto",
         justifyContent: "flex-end",
-        marginTop: "16px",
         width: "100%"
     },
     receivedMessage: {
@@ -34,7 +30,6 @@ const styles = {
         display: "flex",
         flex: "0 0 auto",
         justifyContent: "flex-start",
-        marginTop: "16px",
         width: "100%"
     }
 };

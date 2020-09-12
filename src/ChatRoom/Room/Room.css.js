@@ -4,6 +4,7 @@ const styles = {
         display: "flex",
         flexDirection: "column",
         height: "100%",
+        justifyContent: "flex-end",
         overflow: "hidden",
         padding: "0px 100px",
         width: "100%"
